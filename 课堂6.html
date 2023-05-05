@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body{
+            background-color:rgb(255, 244, 205);
+        }
+        [class|=top]{
+            background-color: aquamarine;
+        }
+        /*|=以指定开头值必须为完整的词，^=以指定开头值不必为单独的词，$=以指定内容结尾值不必为单独的词，`=属性值包含指定词值要为独立单词，*=属性值包含指定词值不必独立单词*/
+        h3{
+            writing-mode: vertical-rl;
+            text-orientation: upright;
+            border: 2px solid;
+            text-shadow: 2px 2px cornflowerblue;
+            font-style: oblique;
+            /*oblique更广泛都能倾斜，italic是得有斜体样式才可以*/
+            font-size: 3vw;
+            /*vw适应页面大小变化而变化，响应式布局，3是3%占页面比例*/
+        /*文本变竖，从上到下，从右到左*/
+        background-image:url("作业2/卡通.jpg") ;
+            background-repeat: no-repeat;
+            background-image: right center;
+            background-attachment: fixed;
+            background-size: contain;
+    }
+
+   
+   </style>
+</head>
+<body>
+    <h1 class="top-header">welcome</h1>
+    <p class="top-text">hello world</p>
+    <p class="topcontent">hhhhhhh</p>
+    <!--选择class开头为top-->
+    <div>
+        <bdo dir="rtl">abcdefg</bdo>
+        <!--rtl表示从右到左，bdo改变文字里面字符顺序，别的元素只能块左右对齐-->
+        <p dir="rtl">abcdefg</p>
+    </div>
+    <ruby >
+        <h1>鹌</h1><rt style="font-size: 20px;">an</rt>
+        <h1>鹑</h1><rt style="font-size: 20px;">chun</rt>
+    </ruby>
+    <!--标注拼音-->
+    <h3>
+    耳机<hr>
+    一戴 谁都不爱<hr>
+    小手<hr>
+    一揣
+    唱出天籁
+    </h3>
+
+
+</body>
+</html>
