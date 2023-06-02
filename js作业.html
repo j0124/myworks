@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        div {
+            text-align: center;
+            font-size: 100px;
+            padding: 100px;
+        }
+        
+        button {
+            display: block;
+            margin: 50px auto;
+            width: 500px;
+            height: 100px;
+            font-size: 30px;
+        }
+        
+        span {
+            color: crimson
+        }
+    </style>
+</head>
+<body>
+        <button onclick="timing()">Timing start</button>
+        <!--多次点击会如何?如何让按钮只可点击一次？-->
+        <!--可考虑一个重置按钮-->
+        <div id="demo"></div>
+      
+        <script>
+          var oBody = document.getElementById("demo");
+          var i = 0;
+          var interval;
+          var isodd=true; 
+      
+          function timing() {
+            if (isodd) { // 奇数次点击，开始计时
+              interval = setInterval(updateNum, 1000);
+            } else { // 偶数次点击，暂停计时
+              clearInterval(interval);
+            }
+             isodd=!isodd
+          }
+      
+          function updateNum() {
+            var j = i++;
+            oBody.innerHTML = "Time passed: " + "<span>" + j + "</span>" + " s";
+          }
+        </script>
+      </body>
+</html>
