@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="index.css">	
+    <title>打地鼠</title>
+</head>
+
+<body>
+    <p id="fs">分数:0分</p>
+    <p id="timer">剩余时间: 60秒</p> <!-- 新增的计时器显示区域 -->
+    <div class="box">
+        <div class="item">
+            <div><img src="images/2.gif" alt=""></div>
+            <div><img src="images/2.gif" alt=""></div>
+            <div><img src="images/2.gif" alt=""></div>
+        </div>
+        <div class="item">
+            <div><img src="images/2.gif" alt=""></div>
+            <div><img src="images/2.gif" alt=""></div>
+            <div><img src="images/2.gif" alt=""></div>
+        </div>
+        <div class="item">
+            <div><img src="images/2.gif" alt=""></div>
+            <div><img src="images/2.gif" alt=""></div>
+            <div><img src="images/2.gif" alt=""></div>
+        </div>
+    </div>
+
+    <button onclick="reset()">重新开始</button>
+
+
+    <script>
+        // 记录游戏开始时间
+        var startTime = new Date().getTime();
+        // 设置游戏时间限制（秒），这里设置为60秒，可根据需要修改
+        var timeLimit = 60;
+
+        var imgs = document.getElementsByTagName('img');
+        var num = 0;
+        var count = 0;
+
+        // 在页面加载完成时启动游戏计时
+        window.onload = function () {
+            startTime = new Date().getTime();
+            updateTimer(); // 页面加载时开始更新计时器
+        };
+
+        // 用于更新计时器显示的函数
+        function updateTimer() {
+            var currentTime = new Date().getTime();
+            var elapsedTime = Math.floor((currentTime - startTime) / 1000);
+            var remainingTime = timeLimit - elapsedTime;
+
+            if (remainingTime <= 0) {
+                endGame();
+                return;
+            }
+
+            document.getElementById('timer').innerHTML = '剩余时间: ' + remainingTime + '秒';
+            setTimeout(updateTimer, 1000);
+        }
+
+        setTimeout("shows()", Math.random() * 500 + 600);
+
+        // 老鼠出来
+        function shows() {
+            num = Math.floor(Math.random() * 9);
+            imgs[num].src = "images/1.gif";
+            imgs[num].style.marginTop = '0px';
+            imgs[num].setAttribute("onclick", "shot()");
+            setTimeout("hides()", Math.random() * 500 + 600);
+        }
+
+        // 老鼠隐藏
+        function hides() {
+            imgs[num].src = "images/2.gif";
+            imgs[num].style.marginTop = '31px';
+            imgs[num].removeAttribute("onclick");
+            setTimeout("shows()", Math.random() * 500 + 600);
+        }
+
+        // 打老鼠的效果
+        function shot() {
+            imgs[num].src = "images/3.gif";
+            imgs[num].style.marginTop = '5px';
+            imgs[num].removeAttribute('onclick');
+            count += 10;
+            document.querySelector('#fs').innerHTML = `分数：${count}分`
+        }
+
+        // 重新开始
+        function reset() {
+            window.location.reload();
+        }
+
+        // 游戏结束函数
+        function endGame() {
+            // 清除所有老鼠出现和点击相关的定时器和属性
+            for (var i = 0; i < imgs.length; i++) {
+                clearTimeout(imgs[i].timer);
+                imgs[i].removeAttribute('onclick');
+                imgs[i].src = "images/2.gif";
+                imgs[i].style.marginTop = '31px';
+            }
+
+            // 显示游戏结束提示和最终分数
+            document.querySelector('#fs').innerHTML = `游戏结束！最终分数：${count}分`;
+        }
+    </script>
+</body>
+
+</html>
