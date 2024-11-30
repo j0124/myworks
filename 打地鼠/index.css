@@ -1,0 +1,70 @@
+* {
+    margin: 0 auto;
+}
+
+body {
+    position: relative;
+}
+
+.box {
+    width: 35vw;
+    background: url("images/bg.jpeg") no-repeat;
+    background-size: cover;
+    background-size: 100% 100%;
+    background-repeat: no-repeat;
+    padding-top: 50px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, 30%);
+    display: flex;
+    justify-content: flex-start;
+    flex-wrap: wrap;
+}
+#timer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 200px; /* 根据实际布局调整合适的高度值，确保能容纳文本且视觉上合适 */
+}
+.item {
+    padding-top: 10px;
+}
+
+.box>.item>div {
+    width: 140px;
+    text-align: center;
+}
+
+img {
+    margin-top: 30px;
+}
+
+#fs {
+    font-size: 30px;
+    position: fixed;
+    top: 5%;
+    left: 50%;
+    transform: translate(-50%, 0%);
+}
+
+button {
+    width: 150px; /* 适当增加按钮宽度，可根据需求调整 */
+    line-height: 40px; /* 增加行高，使按钮内文本垂直居中更美观 */
+    font-size: 18px; /* 设置字体大小 */
+    font-weight: bold; /* 加粗字体，使其更醒目 */
+    color: white; /* 设置文本颜色为白色，可根据背景色搭配调整 */
+    background-color: #007BFF; /* 设置按钮背景色，可替换为喜欢的颜色 */
+    border: none; /* 去除边框 */
+    border-radius: 5px; /* 设置边框圆角，使按钮更圆润美观 */
+    cursor: pointer; /* 鼠标指针变为手型，表示可点击 */
+    position: fixed;
+    bottom: 10%;
+    left: 50%;
+    transform: translate(-50%, 0%);
+    transition: background-color 0.3s ease; /* 添加背景色过渡效果，鼠标悬停时更平滑变化 */
+}
+
+button:hover {
+    background-color: #0056b3; /* 鼠标悬停时的按钮背景色，可根据喜好调整 */
+}
