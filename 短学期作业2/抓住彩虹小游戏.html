@@ -1,0 +1,429 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <link rel="stylesheet" type="text/css" href="style.css">
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      background-image: url("天空背景.png");
+      background-repeat: no-repeat;
+      background-size: cover;
+    }
+
+    .start-screen {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+      background-color: rgba(255, 255, 255, 0.8);
+    }
+
+    .start-container {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      width: 400px;
+      height: 600px;
+      background: repeating-linear-gradient(to right, white, rgb(167, 225, 236));
+      border-radius: 10px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+    }
+
+    .start-title {
+      font-size: 48px;
+      color: cornflowerblue;
+      margin-bottom: 30px;
+      text-align: center;
+      text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+    }
+
+    .start-instructions {
+      font-size: 20px;
+      color: #333;
+      margin: 30px;
+      text-align: left;
+    }
+
+    .start-button {
+      padding: 15px 30px;
+      font-size: 24px;
+      font-weight: 1000;
+      background-color: cornflowerblue;
+      color: #fffcfc;
+      border: none;
+      border-radius: 30px;
+      cursor: pointer;
+      box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+    }
+
+    .start-button:hover {
+      background: repeating-linear-gradient(to right, rgba(255, 8, 8, 0.711), rgba(255, 166, 0, 0.695), rgba(255, 255, 0, 0.574), rgba(0, 128, 0, 0.656), rgba(42, 125, 138, 0.585), rgba(0, 0, 255, 0.727), rgba(128, 0, 128, 0.574));
+    }
+
+    .start-button:focus {
+      outline: none;
+    }
+
+    h1 {
+      display: inline-block;
+      color: cornflowerblue;
+      position: absolute;
+      top: 100px;
+      left: 150;
+    }
+
+    #player {
+      color: #fff;
+  width: 300px;
+  height: 200px; 
+  background-image: url(彩虹碗.png);
+  background-repeat: no-repeat;
+  background-size:cover;
+  background-position: center;
+  position: absolute;
+  bottom: 10px;
+}     
+
+    #score {
+      background-color: rgb(238, 242, 244);
+      border: lightblue solid 1px;
+      padding-left: 40px;
+      padding-right: 40px;
+      border-width: 5px;
+      padding-top: 8px;
+      padding-bottom: 8px;
+      border-radius: 40px;
+      font-family: Arial, Helvetica, sans-serif;
+      font-size: 30px;
+      left: 0;
+      position: absolute;
+      top: 80px;
+      margin: 30px 20px;
+    }
+
+    #rainbow-container {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      overflow: hidden;
+      z-index: -1;
+    }
+
+    .rainbow-drop {
+  width: 20px;
+  height: 40px;
+  position: absolute;
+  top: 0;
+  animation-name: drop;
+  animation-duration: 2s;
+  animation-timing-function: linear;
+  background-color: blue; /* 设置雨滴的颜色 */
+  box-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5); /* 设置雨滴的阴影效果 */
+}
+
+
+    #target-color {
+      font-family: 'Times New Roman', Times, serif;
+      font-weight: 600;
+      font-size: 30px;
+      background-color: lightblue;
+      border: #fff solid 1px;
+      border-radius: 40px;
+      border-width: 5px;
+      position: absolute;
+      left: 0;
+      top: 20px;
+      margin: 20px;
+      padding: 10px;
+    }
+
+    @keyframes drop {
+      0% {
+        top: 0;
+      }
+      100% {
+        top: 100vh;
+      }
+    }
+    .message-overlay {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 9999;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .message-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 400px;
+    height: 300px; /* 调整高度为300px */
+    background-color: #fff;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  }
+
+
+
+
+    .message-text {
+      font-size: 24px;
+      color: #333;
+      text-align: center;
+      margin-bottom: 20px;
+    }
+
+    .message-button {
+      padding: 10px 20px;
+      font-size: 18px;
+      font-weight: 600;
+      background-color: cornflowerblue;
+      color: #fff;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+    .message-button:hover{
+      background: repeating-linear-gradient(to right, rgba(255, 8, 8, 0.711), rgba(255, 166, 0, 0.695), rgba(255, 255, 0, 0.574), rgba(0, 128, 0, 0.656), rgba(42, 125, 138, 0.585), rgba(0, 0, 255, 0.727), rgba(128, 0, 128, 0.574));
+    }
+.rainbow-image {
+  width: 200px;
+  height: auto;
+  margin-top: 20px;
+}
+  </style>
+</head>
+<body>
+  <div class="start-screen">
+    <div class="start-container">
+      <h1 class="start-title">抓住彩虹小游戏</h1>
+      <p class="start-instructions">
+        规则如下：<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;玩家通过键盘的← →键控彩虹碗的移动，容器需要动态接住指定颜色的雨滴，接到一个积一分，接到非指定颜色的雨滴扣一分，累积七分即为成功！错过指定颜色即为挑战失败！<br>
+        （注意：指定颜色在接到后会随机改变）
+      </p>
+      <button id="start-button" class="start-button">开始游戏</button>
+      
+    </div>
+  </div>
+
+  <div id="game-container" style="display: none;">
+    <div id="player"></div>
+    <div id="target-color">颜色: <span id="target-color-span"></span></div>
+    <div id="score">得分: <span id="score-span"></span></div>
+    <div id="rainbow-container"></div>
+  </div>
+  <div class="message-overlay">
+    <div class="message-container">
+      <img src="彩虹.png" class="rainbow-image">
+      <p class="message-text"></p>
+      <button id="restart-button" class="message-button" style="display: none;">重新开始</button>
+    </div>
+  </div>
+  <script>
+var player = document.getElementById("player");
+var targetColorSpan = document.getElementById("target-color-span");
+var scoreSpan = document.getElementById("score-span");
+var rainbowContainer = document.getElementById("rainbow-container");
+var messageOverlay = document.querySelector(".message-overlay");
+var messageText = document.querySelector(".message-text");
+var messageButton = document.querySelector(".message-button");
+
+var score = 0;
+
+var targetColor = getRandomColor();
+var gameStarted = false;
+var dropInterval = 1000; // 初始降落间隔为1秒
+var maxDrops = 200; // 初始每次降落的雨滴数量为10
+
+targetColorSpan.textContent = targetColor;
+
+var startButton = document.getElementById("start-button");
+startButton.addEventListener("click", startGame);
+
+var restartButton = document.getElementById("restart-button");
+restartButton.addEventListener("click", restartGame);
+
+function startGame() {
+  document.querySelector(".start-screen").style.display = "none";
+  document.getElementById("game-container").style.display = "block";
+  gameStarted = true;
+  player.style.left = "0px";
+  setInterval(createRainbowDrop, dropInterval); // 使用间隔变量控制雨滴的降落速度
+}
+
+function restartGame() {
+  score = 0;
+  player.style.left = "0px";
+  scoreSpan.textContent = score;
+  targetColor = getRandomColor();
+  targetColorSpan.textContent = targetColor;
+  var drops = document.getElementsByClassName("rainbow-drop");
+  while (drops.length > 0) {
+    drops[0].parentNode.removeChild(drops[0]);
+  }
+  gameStarted = true;
+  restartButton.style.display = "none";
+}
+
+document.addEventListener("keydown", movePlayer);
+
+function movePlayer(event) {
+  if (!gameStarted) {
+    return;
+  }
+
+  var xPos = parseInt(player.style.left) || 0;
+var increment = 40;
+var leftBoundary = 200; // 左边界边距为50像素
+var rightBoundary = window.innerWidth - player.offsetWidth - 200; // 右边界边距为50像素
+
+if (event.key === "ArrowLeft") {
+  xPos -= increment;
+  if (xPos < leftBoundary) xPos = leftBoundary;
+} else if (event.key === "ArrowRight") {
+  xPos += increment;
+  if (xPos > rightBoundary)
+    xPos = rightBoundary;
+}
+
+player.style.left = xPos + "px";
+
+
+  checkCollision();
+}
+
+function checkCollision() {
+  var drops = document.getElementsByClassName("rainbow-drop");
+
+  for (var i = 0; i < drops.length; i++) {
+    var drop = drops[i];
+    var dropRect = drop.getBoundingClientRect();
+
+    if (isCovered(dropRect)) {
+      var dropColor = drop.style.backgroundColor;
+
+      if (dropColor === targetColor) {
+        rainbowContainer.removeChild(drop);
+        score++;
+        scoreSpan.textContent = score;
+        targetColor = getRandomColor();
+        targetColorSpan.textContent = targetColor;
+
+        if (score >= 7) {
+          gameSuccess();
+          return;
+        }
+      } else {
+        rainbowContainer.removeChild(drop);
+        score--;
+        scoreSpan.textContent = score;
+      }
+    }
+  }
+}
+
+function isOverlap(rect1, rect2) {
+  return (
+    rect1.left < rect2.right &&
+    rect1.right > rect2.left &&
+    rect1.top < rect2.bottom &&
+    rect1.bottom > rect2.top
+  );
+}
+
+function isCovered(dropRect) {
+  var playerRect = player.getBoundingClientRect();
+
+  return isOverlap(playerRect, dropRect);
+}
+
+function getRandomColor() {
+  var colors = ["red", "orange", "yellow", "green", "blue", "purple"];
+  return colors[Math.floor(Math.random() * colors.length)];
+}
+
+function createRainbowDrop() {
+  var drop = document.createElement("div");
+  drop.classList.add("rainbow-drop");
+  drop.style.backgroundColor = getRandomColor();
+
+  drop.addEventListener("animationend", function () {
+    rainbowContainer.removeChild(drop);
+    if (drop.style.backgroundColor === targetColor) {
+      gameOver();
+    }
+  });
+
+  rainbowContainer.appendChild(drop);
+
+  var containerWidth = rainbowContainer.offsetWidth;
+  var dropWidth = drop.offsetWidth;
+  var maxLeft = containerWidth - dropWidth;
+  var minLeft = containerWidth / 6;
+
+  drop.style.left =
+    Math.random() * (maxLeft - minLeft) + minLeft + "px";
+
+  var xPos = parseFloat(drop.style.left);
+  var rightBoundary = containerWidth - 250;
+
+  if (xPos > rightBoundary) {
+    xPos = rightBoundary;
+  }
+
+  drop.style.left = xPos + "px";
+
+  // 随着游戏时间的增加，降落间隔缩短，每次降落的雨滴数量增加
+dropInterval -= 50; // 增加减少量以加快速度变化
+maxDrops += 100;
+if (dropInterval < 100) dropInterval = 100; // 降落间隔最小值为200
+if (maxDrops > 1000) maxDrops = 1000; // 每次降落的雨滴数量最大值为50
+  // 控制每次降落的雨滴数量
+  if (rainbowContainer.childElementCount > maxDrops) {
+    rainbowContainer.removeChild(rainbowContainer.firstChild);
+  }
+}
+
+function gameOver() {
+  gameStarted = false;
+  showMessage("游戏结束！得分: " + score);
+  restartButton.style.display = "block";
+}
+
+function gameSuccess() {
+  gameStarted = false;
+  showMessage("游戏成功！恭喜你抓住了彩虹！得分: " + score);
+  messageContainer.classList.add("success-container")
+  restartButton.style.display = "block";
+}
+
+function showMessage(text) {
+  messageText.textContent = text;
+  messageOverlay.style.display = "flex";
+}
+
+function hideMessage() {
+  messageOverlay.style.display = "none";
+}
+
+messageButton.addEventListener("click", hideMessage);
+</script>
+</body>
+</html>
